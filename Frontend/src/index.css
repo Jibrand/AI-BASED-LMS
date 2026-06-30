@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .ai-sparkle-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 2.5px; /* Much thicker to be clearly visible */
+    border-radius: 1.25rem; /* More curves! */
+    box-shadow: 0 0 15px rgba(255, 211, 0, 0.15); /* Soft outer glow */
+  }
+  .ai-sparkle-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: conic-gradient(from 0deg, transparent 0%, transparent 35%, #FFD300 45%, #FF8C00 50%, #FFD300 55%, transparent 65%, transparent 100%);
+    animation: border-spin 2.5s linear infinite;
+    z-index: 0;
+  }
+  .ai-sparkle-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    border-radius: calc(1.25rem - 2.5px); /* Matches parent exactly */
+  }
+}
+
+@keyframes border-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes juggle {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-3px) rotate(-15deg) scale(1.1); }
+  50% { transform: translateY(0) rotate(0deg) scale(1); }
+  75% { transform: translateY(-3px) rotate(15deg) scale(1.1); }
+}
+
+@layer utilities {
+  .animate-juggle {
+    animation: juggle 1.5s ease-in-out infinite;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 98%; /* #FAFAFA */
+    --foreground: 0 0% 18%; /* #2D2D2D */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 18%;
+
+    --primary: 50 100% 50%; /* #FFD300 */
+    --primary-foreground: 0 0% 18%; /* Dark text on yellow background */
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 18%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 50 100% 50%;
+    --accent-foreground: 0 0% 18%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 50 100% 50%;
+    
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
